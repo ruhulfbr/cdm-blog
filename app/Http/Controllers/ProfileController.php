@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -16,6 +17,14 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+//        $user = User::findOrFail(1);
+//        $user->name = 'Victoria Faith';
+//        $user->saveQuietly();
+//
+//        $user->deleteQuietly();
+//        $user->forceDeleteQuietly();
+//        $user->restoreQuietly();
+
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
@@ -45,6 +54,12 @@ class ProfileController extends Controller
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
+
+//        $user = User::withoutEvents(function () {
+//            User::findOrFail(1)->delete();
+//
+//            return User::find(2);
+//        });
 
         $user = $request->user();
 

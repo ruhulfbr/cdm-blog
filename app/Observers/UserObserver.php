@@ -9,6 +9,8 @@ class UserObserver
     /**
      * Handle the User "created" event.
      */
+
+    public $afterCommit = true;
     public function created(User $user): void
     {
         //
