@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Blog extends Model
@@ -13,5 +14,10 @@ class Blog extends Model
     protected $table = 'blogs';
 //    protected $primaryKey = 'flight_id';
 //    public $incrementing = false;
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
