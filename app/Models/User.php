@@ -55,4 +55,14 @@ class User extends Authenticatable
         return $this->hasMany(Blog::class);
     }
 
+    public function latestBlog(): HasOne
+    {
+        return $this->hasOne(Blog::class)->latestOfMany();
+    }
+
+    public function olderstBlogs(): HasOne
+    {
+        return $this->hasOne(Blog::class)->oldestOfMany();
+    }
+
 }

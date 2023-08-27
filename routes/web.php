@@ -1,11 +1,11 @@
 <?php
 
-use DB;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Phone;
 use App\Models\Blog;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +35,18 @@ Route::get('/', function () {
 //
 //    dd($users);
 
-    DB::enableQueryLog();
-    $blog = Blog::find(7)->user;
+//    DB::enableQueryLog();
+//    $blog = Blog::find(7)->user;
 
 //    dd(DB::getQueryLog());
 
-    dd($blog);
+    DB::enableQueryLog();
+    $user = User::find(1)->latestBlog;
+    $user = User::find(1)->olderstBlogs;
+
+    dd(DB::getQueryLog());
+
+    dd($user);
 
     return view('welcome');
 });
