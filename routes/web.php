@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Phone;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+//   $profile = User::with('phone')->find(1);
+//
+//   dd($profile->phone);
+//
+//    $phone = Phone::find(1);
+//
+//    dd($phone->user->name);
+
+    \DB::enableQueryLog();
+    $users = User::find(1)->blogs()->select('title')->where('id', 2)->first();
+
+    dd(\DB::getQueryLog());
+
+    dd($users);
+
     return view('welcome');
 });
 
